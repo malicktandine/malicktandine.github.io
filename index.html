@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tandine Malick — Business Analyst, Marchés Financiers &amp; Data</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #5a5a5a;
+    --line: #e0e0e0;
+    --bg: #ffffff;
+    --accent: #1f4e3d;
+    --accent-soft: #eef4f1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 3rem;
+  }
+  h1 {
+    font-size: 2rem;
+    margin: 0 0 0.25rem;
+    letter-spacing: -0.02em;
+  }
+  .role {
+    font-size: 1.05rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0 0 1rem;
+  }
+  .contact {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .contact a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .contact a:hover { color: var(--accent); border-color: var(--accent); }
+  .contact span { margin: 0 0.5rem; color: var(--line); }
+
+  section { margin-bottom: 2.75rem; }
+  h2 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+  p.lead { font-size: 1rem; color: var(--ink); }
+
+  .item { margin-bottom: 1.5rem; }
+  .item:last-child { margin-bottom: 0; }
+  .item-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+  }
+  .item-title { font-weight: 600; font-size: 1rem; }
+  .item-org { color: var(--muted); font-weight: 400; }
+  .item-date { font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
+  ul.bullets { margin: 0.5rem 0 0; padding-left: 1.1rem; }
+  ul.bullets li { margin-bottom: 0.35rem; font-size: 0.95rem; }
+
+  .project {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.25rem 1.4rem;
+    margin-bottom: 1.25rem;
+    background: var(--accent-soft);
+  }
+  .project:last-child { margin-bottom: 0; }
+  .project-title { font-weight: 600; font-size: 1.02rem; margin-bottom: 0.35rem; }
+  .project-desc { font-size: 0.95rem; color: var(--ink); margin-bottom: 0.6rem; }
+  .project-links a {
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 1rem;
+  }
+  .project-links a:hover { text-decoration: underline; }
+  .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    color: var(--accent);
+    background: #ffffff;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 0.1rem 0.5rem;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 2rem;
+  }
+  .skill-cat { font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.3rem; }
+  .skill-list { font-size: 0.92rem; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    .wrap { padding: 2rem 1.25rem 3rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Tandine Malick</h1>
+    <p class="role">Business Analyst — Marchés Financiers, Data &amp; Risque</p>
+    <p class="contact">
+      Paris, France
+      <span>·</span><a href="mailto:malicktandine98@gmail.com">malicktandine98@gmail.com</a>
+      <span>·</span><a href="tel:+33751266427">+33 7 51 26 64 27</a>
+      <span>·</span><a href="https://www.linkedin.com/in/malick-tandine-2b14a7187/" target="_blank">LinkedIn</a>
+      <span>·</span><a href="https://github.com/malickmt" target="_blank">GitHub</a>
+    </p>
+  </header>
+
+  <section>
+    <h2>Profil</h2>
+    <p class="lead">
+      Diplômé du Master Financial Markets and Technologies de NEOMA Business School, je combine une
+      compréhension solide des marchés financiers (produits dérivés, valorisation, gestion des risques
+      de contrepartie) avec une expertise opérationnelle en analyse financière et data (SQL, Python,
+      Power BI). 2 ans d'expérience internationale (Londres, Johannesburg) en pilotage de la performance
+      et business intelligence. Anglais courant (C2).
+    </p>
+  </section>
+
+  <section>
+    <h2>Projets personnels</h2>
+
+    <div class="project">
+      <div class="project-title">Modélisation CVA sur swap de taux <span class="badge">Python</span></div>
+      <div class="project-desc">
+        Simulation Monte-Carlo de 10 000 trajectoires de taux (modèle de Vasicek), valorisation d'un
+        swap de taux, calcul du profil d'exposition (Expected Exposure, PFE) et du CVA — construit
+        from scratch, sans librairie de pricing externe, pour maîtriser chaque étape du calcul.
+        Limites et hypothèses documentées explicitement (modèle mono-facteur, pas de wrong-way risk).
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/malickmt/cva-swap-pricing" target="_blank">Voir le code sur GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-title">Gouvernance de KPI — NovaRetail <span class="badge">dbt · Snowflake · Tableau · Python</span></div>
+      <div class="project-desc">
+        Pipeline de données traitant environ 99 400 commandes sur Snowflake (dbt, tests automatisés) ;
+        identification chiffrée d'un écart de chiffre d'affaires de 2,72% via une analyse d'impact.
+        Modèle Python (scikit-learn) et dashboard Tableau connecté à Snowflake pour la restitution.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Expérience professionnelle</h2>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Business Analyst <span class="item-org">— JJ Conference &amp; Travels, Johannesburg</span></span>
+        <span class="item-date">2025</span>
+      </div>
+      <ul class="bullets">
+        <li>Sécurisation de 15 000 à 20 000 € d'économies sur les marges fournisseurs via l'analyse de rentabilité et le calcul de ROI sur plus de 20 projets opérationnels</li>
+        <li>Réduction du délai de reporting mensuel de 3 jours à 2 heures grâce à la conception de 3 dashboards Power BI et l'automatisation des flux via Power Query</li>
+        <li>Autonomisation de 8 collaborateurs sur les nouveaux outils d'analyse via le cadrage des besoins et la formation</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Business Analyst <span class="item-org">— LHA London, Londres</span></span>
+        <span class="item-date">Sept. 2021 – Nov. 2022</span>
+      </div>
+      <ul class="bullets">
+        <li>Réduction de 28% des écarts budget vs. réel dès la première année grâce à la conception d'outils de prévision budgétaire agiles, sur un portefeuille de 12 résidences</li>
+        <li>Contrôle de gestion opérationnel (OPEX) et pilotage de KPI sectoriels ; reporting international en anglais</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Association Executive <span class="item-org">— OPA Finance Club, NEOMA</span></span>
+        <span class="item-date">Nov. 2023 – Déc. 2024</span>
+      </div>
+      <ul class="bullets">
+        <li>Rédaction de plus de 40 rapports hebdomadaires sur l'actualité des marchés financiers</li>
+        <li>Organisation d'événements marchés et gestion des partenariats avec des institutions financières</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Compétences</h2>
+    <div class="skills-grid">
+      <div>
+        <div class="skill-cat">Data &amp; Programmation</div>
+        <div class="skill-list">SQL · Python (pandas, numpy, scikit-learn) · Power BI (DAX)</div>
+      </div>
+      <div>
+        <div class="skill-cat">Marchés financiers</div>
+        <div class="skill-list">Produits dérivés, valorisation, risque de contrepartie</div>
+      </div>
+      <div>
+        <div class="skill-cat">Finance opérationnelle</div>
+        <div class="skill-list">Analyse de rentabilité, contrôle budgétaire, modélisation financière</div>
+      </div>
+      <div>
+        <div class="skill-cat">Méthodologies</div>
+        <div class="skill-list">Agile/Scrum, BPMN/UML, gestion de projet, stakeholder management</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Formation</h2>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Master Financial Markets and Technologies <span class="item-org">— NEOMA Business School</span></span>
+        <span class="item-date">Déc. 2025</span>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Licence Économie et Gestion <span class="item-org">— CY Cergy Paris Université</span></span>
+        <span class="item-date">Mai 2021</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Français (natif) · Anglais (C2) · Espagnol (A2) — Échecs · Escalade de bloc
+  </footer>
+
+</div>
+</body>
+</html>
