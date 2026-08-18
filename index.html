@@ -1,186 +1,289 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tandine Malick — Business Analyst, Marchés Financiers &amp; Data</title>
+<title>Tandine Malick — Business Analyst, Financial Markets &amp; Data</title>
 <style>
   :root {
-    --ink: #1a1a1a;
-    --muted: #5a5a5a;
-    --line: #e0e0e0;
     --bg: #ffffff;
-    --accent: #1f4e3d;
-    --accent-soft: #eef4f1;
+    --bg-soft: #f2f3f5;
+    --ink: #1f2b3a;
+    --accent: #56aab3;
+    --accent2: #d75b56;
+    --accent3: #ebaf58;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --circle-bg: #1f2b3a;
+    --circle-ink: #ffffff;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-family: "Segoe UI", -apple-system, Helvetica, Arial, sans-serif;
     color: var(--ink);
     background: var(--bg);
-    line-height: 1.6;
+    line-height: 1.65;
   }
-  .wrap {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem 5rem;
-  }
-  header {
-    margin-bottom: 3rem;
-  }
-  h1 {
-    font-size: 2rem;
-    margin: 0 0 0.25rem;
-    letter-spacing: -0.02em;
-  }
-  .role {
-    font-size: 1.05rem;
-    color: var(--accent);
-    font-weight: 600;
-    margin: 0 0 1rem;
-  }
-  .contact {
-    font-size: 0.9rem;
-    color: var(--muted);
-  }
-  .contact a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
-  .contact a:hover { color: var(--accent); border-color: var(--accent); }
-  .contact span { margin: 0 0.5rem; color: var(--line); }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+  a { color: inherit; }
 
-  section { margin-bottom: 2.75rem; }
-  h2 {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
+  nav {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(6px);
     border-bottom: 1px solid var(--line);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.25rem;
   }
-  p.lead { font-size: 1rem; color: var(--ink); }
+  nav .wrap { display: flex; justify-content: flex-end; gap: 2rem; padding: 1.1rem 1.5rem; flex-wrap: wrap; }
+  nav a { font-weight: 600; font-size: 0.9rem; text-decoration: none; }
+  nav a:hover { color: var(--accent); }
 
-  .item { margin-bottom: 1.5rem; }
-  .item:last-child { margin-bottom: 0; }
-  .item-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 0.25rem 1rem;
+  /* ===== HERO ===== */
+  .hero { padding: 4.5rem 0 3.5rem; text-align: center; }
+  .hero-photo {
+    width: 110px; height: 110px; margin: 0 auto 1.6rem;
+    border-radius: 50%; background: var(--circle-bg); color: var(--circle-ink);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.2rem; font-weight: 700;
   }
-  .item-title { font-weight: 600; font-size: 1rem; }
-  .item-org { color: var(--muted); font-weight: 400; }
-  .item-date { font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
-  ul.bullets { margin: 0.5rem 0 0; padding-left: 1.1rem; }
-  ul.bullets li { margin-bottom: 0.35rem; font-size: 0.95rem; }
-
-  .project {
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 1.25rem 1.4rem;
-    margin-bottom: 1.25rem;
-    background: var(--accent-soft);
-  }
-  .project:last-child { margin-bottom: 0; }
-  .project-title { font-weight: 600; font-size: 1.02rem; margin-bottom: 0.35rem; }
-  .project-desc { font-size: 0.95rem; color: var(--ink); margin-bottom: 0.6rem; }
-  .project-links a {
-    font-size: 0.85rem;
-    color: var(--accent);
+  .hero h1 { font-size: 1.7rem; font-weight: 700; margin: 0 0 0.6rem; }
+  .hero .tagline { font-size: 1.15rem; color: var(--muted); max-width: 46ch; margin: 0 auto 0.5rem; }
+  .hero .subtagline { font-size: 0.95rem; color: var(--muted); max-width: 52ch; margin: 0 auto 1.8rem; }
+  .hero .subtagline b { color: var(--ink); font-weight: 600; }
+  .hero-cta { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.6rem; }
+  .btn {
+    border: 1.5px solid var(--ink); border-radius: 999px;
+    padding: 0.65rem 1.5rem; font-weight: 600; font-size: 0.9rem;
     text-decoration: none;
-    font-weight: 600;
-    margin-right: 1rem;
   }
-  .project-links a:hover { text-decoration: underline; }
-  .badge {
-    display: inline-block;
-    font-size: 0.72rem;
+  .btn.primary { background: var(--ink); color: #fff; }
+  .hero-social { display: flex; gap: 0.9rem; justify-content: center; }
+  .icon-circle {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+  }
+  .icon-circle svg { width: 16px; height: 16px; }
+  .icon-circle:hover { border-color: var(--ink); }
+
+  section { padding: 3.5rem 0; border-top: 1px solid var(--line); }
+  .eyebrow { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 700; margin-bottom: 1.5rem; }
+
+  /* ===== ABOUT + TIMELINE ===== */
+  .about-lead { font-size: 1.02rem; max-width: 66ch; margin-bottom: 2.2rem; }
+  .about-lead b { font-weight: 700; }
+  .timeline { display: flex; justify-content: space-between; position: relative; padding-top: 1.5rem; }
+  .timeline::before { content: ""; position: absolute; top: 6px; left: 0; right: 0; height: 2px; background: var(--line); }
+  .tstep { text-align: center; flex: 1; position: relative; font-size: 0.82rem; color: var(--muted); }
+  .tstep::before {
+    content: ""; position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+    width: 10px; height: 10px; border-radius: 50%; background: var(--ink);
+  }
+  .tstep b { display: block; color: var(--ink); font-size: 0.88rem; margin-bottom: 0.2rem; }
+
+  /* ===== WHAT I DO (3 cols) ===== */
+  .help-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .help-card { text-align: center; }
+  .help-icon {
+    width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 1rem;
+    border: 2px solid var(--icon-color, var(--accent));
+    color: var(--icon-color, var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1.1rem;
+  }
+  .help-card h3 { font-size: 1.02rem; margin: 0 0 0.6rem; }
+  .help-card p { font-size: 0.9rem; color: var(--muted); margin: 0 0 1rem; }
+  .help-card a { font-size: 0.85rem; font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--ink); }
+
+  /* ===== PORTFOLIO GRID ===== */
+  .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .pcard {
+    border: 1px solid var(--line); border-radius: 10px; padding: 1.4rem;
+    border-top: 3px solid var(--stat-color, var(--accent));
+  }
+  .pcard .pnum { font-size: 0.78rem; color: var(--muted); font-weight: 700; margin-bottom: 0.6rem; }
+  .pcard h3 { font-size: 1rem; margin: 0 0 0.7rem; }
+  .pcard .stat { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.1rem; color: var(--stat-color, var(--ink)); }
+  .pcard .stat-label { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.8rem; }
+  .pcard p { font-size: 0.88rem; margin: 0 0 0.8rem; }
+  .pcard .tags { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.8rem; }
+  .pcard a.link { font-size: 0.82rem; font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--ink); }
+
+  /* ===== EXPERIENCE LIST ===== */
+  .item { padding: 1.3rem 0; border-bottom: 1px solid var(--line); }
+  .item:last-child { border-bottom: none; padding-bottom: 0; }
+  .item:first-child { padding-top: 0; }
+  .item-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.2rem 1rem; }
+  .item-title { font-weight: 700; font-size: 0.98rem; }
+  .item-org { color: var(--muted); font-weight: 400; }
+  .item-date { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+  ul.bullets { margin: 0.5rem 0 0; padding-left: 1.1rem; }
+  ul.bullets li { font-size: 0.9rem; margin-bottom: 0.35rem; }
+
+  /* ===== CONTACT (Yan Holtz style) ===== */
+  .contact-section { text-align: center; }
+  .contact-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2.8rem; font-weight: 400; margin: 0 0 1.3rem;
+    letter-spacing: 0.02em;
+  }
+  .contact-sentence { font-size: 1.1rem; color: var(--ink); max-width: 52ch; margin: 0 auto 2rem; }
+  .contact-sentence a { color: var(--ink); text-decoration: underline; }
+  .contact-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .contact-btn {
+    border: 1.5px solid var(--accent);
     color: var(--accent);
-    background: #ffffff;
-    border: 1px solid var(--accent);
-    border-radius: 4px;
-    padding: 0.1rem 0.5rem;
-    margin-left: 0.5rem;
-    vertical-align: middle;
+    border-radius: 8px;
+    padding: 1rem 2.2rem;
+    font-size: 1rem; font-weight: 500;
+    text-decoration: none;
   }
+  .contact-btn.primary { background: var(--accent); color: #fff; }
+  .contact-btn:hover { opacity: 0.85; }
 
-  .skills-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem 2rem;
-  }
-  .skill-cat { font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.3rem; }
-  .skill-list { font-size: 0.92rem; }
+  footer { padding: 2.2rem 0; text-align: center; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--line); }
 
-  footer {
-    border-top: 1px solid var(--line);
-    padding-top: 1.5rem;
-    font-size: 0.85rem;
-    color: var(--muted);
-    text-align: center;
-  }
-
-  @media (max-width: 600px) {
-    .skills-grid { grid-template-columns: 1fr; }
-    .wrap { padding: 2rem 1.25rem 3rem; }
+  @media (max-width: 640px) {
+    .help-grid, .portfolio-grid { grid-template-columns: 1fr; }
+    .timeline { flex-direction: column; gap: 1.2rem; align-items: flex-start; }
+    .timeline::before { display: none; }
+    .tstep::before { left: -18px; top: 4px; }
+    .tstep { text-align: left; padding-left: 1.2rem; }
+    .contact-title { font-size: 2.2rem; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
+<nav>
+  <div class="wrap">
+    <a href="#home">Home</a>
+    <a href="#about">Profile</a>
+    <a href="#help">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section id="home" class="hero" style="border-top:none;">
+  <div class="wrap">
+    <div class="hero-photo">TM</div>
     <h1>Tandine Malick</h1>
-    <p class="role">Business Analyst — Marchés Financiers, Data &amp; Risque</p>
-    <p class="contact">
-      Paris, France
-      <span>·</span><a href="mailto:malicktandine98@gmail.com">malicktandine98@gmail.com</a>
-      <span>·</span><a href="tel:+33751266427">+33 7 51 26 64 27</a>
-      <span>·</span><a href="https://www.linkedin.com/in/malick-tandine-2b14a7187/" target="_blank">LinkedIn</a>
-      <span>·</span><a href="https://github.com/malickmt" target="_blank">GitHub</a>
+    <p class="tagline">Financial analysis and data for reliable market decisions.</p>
+    <p class="subtagline">
+      I'm a <b>Business Analyst</b>, graduate of the Financial Markets and Technologies Master's
+      (NEOMA), and I can help you with counterparty risk analysis, data and performance management.
     </p>
-  </header>
+    <div class="hero-cta">
+      <a class="btn primary" href="#projects">See my projects</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+    <div class="hero-social">
+      <a class="icon-circle" href="https://www.linkedin.com/in/malick-tandine-2b14a7187/" target="_blank" title="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
+      <a class="icon-circle" href="https://github.com/malickmt" target="_blank" title="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.39 7.86 10.91.57.1.79-.25.79-.55v-2.1c-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.02 11.02 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.27 5.67.42.36.78 1.07.78 2.16v3.2c0 .31.21.66.8.55A10.51 10.51 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg>
+      </a>
+      <a class="icon-circle" href="mailto:malicktandine98@gmail.com" title="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
 
-  <section>
-    <h2>Profil</h2>
-    <p class="lead">
-      Diplômé du Master Financial Markets and Technologies de NEOMA Business School, je combine une
-      compréhension solide des marchés financiers (produits dérivés, valorisation, gestion des risques
-      de contrepartie) avec une expertise opérationnelle en analyse financière et data (SQL, Python,
-      Power BI). 2 ans d'expérience internationale (Londres, Johannesburg) en pilotage de la performance
-      et business intelligence. Anglais courant (C2).
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">Bio</div>
+    <p class="about-lead">
+      <b>Hi, I'm Malick.</b> Graduate of NEOMA Business School's Financial Markets and Technologies
+      Master's, I combine a solid understanding of financial markets (derivatives, valuation,
+      counterparty risk) with hands-on expertise in financial analysis and data (SQL, Python, Power BI).
+      2 years of international experience (London, Johannesburg), fluent English (C2).
     </p>
-  </section>
+    <div class="timeline">
+      <div class="tstep"><b>BA Economics &amp; Management</b>CY Cergy Paris<br>2021</div>
+      <div class="tstep"><b>Business Analyst</b>LHA London<br>2021–2022</div>
+      <div class="tstep"><b>Association Executive</b>OPA Finance Club<br>2023–2024</div>
+      <div class="tstep"><b>Business Analyst</b>JJ Conference<br>2025</div>
+      <div class="tstep"><b>Master FMT</b>NEOMA<br>2025</div>
+    </div>
+  </div>
+</section>
 
-  <section>
-    <h2>Projets personnels</h2>
-
-    <div class="project">
-      <div class="project-title">Modélisation CVA sur swap de taux <span class="badge">Python</span></div>
-      <div class="project-desc">
-        Simulation Monte-Carlo de 10 000 trajectoires de taux (modèle de Vasicek), valorisation d'un
-        swap de taux, calcul du profil d'exposition (Expected Exposure, PFE) et du CVA — construit
-        from scratch, sans librairie de pricing externe, pour maîtriser chaque étape du calcul.
-        Limites et hypothèses documentées explicitement (modèle mono-facteur, pas de wrong-way risk).
+<section id="help">
+  <div class="wrap">
+    <div class="eyebrow">What I can do</div>
+    <div class="help-grid">
+      <div class="help-card" style="--icon-color: var(--accent2);">
+        <div class="help-icon">Δ</div>
+        <h3>Markets &amp; Risk</h3>
+        <p>Derivatives, valuation, counterparty risk (xVA/PFE) — explored end-to-end through a
+        personal project.</p>
+        <a href="#projects">See the project →</a>
       </div>
-      <div class="project-links">
-        <a href="https://github.com/malickmt/cva-swap-pricing" target="_blank">Voir le code sur GitHub →</a>
+      <div class="help-card" style="--icon-color: var(--accent);">
+        <div class="help-icon">{ }</div>
+        <h3>Data &amp; BI</h3>
+        <p>SQL, Python (pandas, numpy, scikit-learn), Power BI (DAX) — from raw data to an
+        actionable dashboard.</p>
+        <a href="#projects">See the project →</a>
+      </div>
+      <div class="help-card" style="--icon-color: var(--accent3);">
+        <div class="help-icon">✓</div>
+        <h3>Analysis &amp; Delivery</h3>
+        <p>Requirements gathering, ROI, budget control, Agile/Scrum — turning a business need into
+        a concrete result.</p>
+        <a href="#experience">See experience →</a>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="project">
-      <div class="project-title">Gouvernance de KPI — NovaRetail <span class="badge">dbt · Snowflake · Tableau · Python</span></div>
-      <div class="project-desc">
-        Pipeline de données traitant environ 99 400 commandes sur Snowflake (dbt, tests automatisés) ;
-        identification chiffrée d'un écart de chiffre d'affaires de 2,72% via une analyse d'impact.
-        Modèle Python (scikit-learn) et dashboard Tableau connecté à Snowflake pour la restitution.
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow">Projects</div>
+    <div class="portfolio-grid">
+      <div class="pcard" style="--stat-color: var(--accent2);">
+        <div class="pnum">01 — PYTHON</div>
+        <h3>CVA Modeling on an Interest Rate Swap</h3>
+        <div class="stat">10,000</div>
+        <div class="stat-label">simulated rate paths (Monte Carlo)</div>
+        <p>Monte Carlo simulation (Vasicek), swap valuation, exposure profile calculation (EE, PFE)
+        and CVA — built from scratch, no pricing library. Limitations documented.</p>
+        <div class="tags">Python · NumPy · Monte Carlo</div>
+        <a class="link" href="https://github.com/malickmt/cva-swap-pricing" target="_blank">View code →</a>
+      </div>
+      <div class="pcard" style="--stat-color: var(--accent3);">
+        <div class="pnum">02 — DATA</div>
+        <h3>KPI Governance — NovaRetail</h3>
+        <div class="stat">2.72%</div>
+        <div class="stat-label">revenue discrepancy identified</div>
+        <p>Data pipeline on Snowflake (dbt, automated tests) processing ~99,400 orders. Python model
+        and Tableau dashboard for reporting.</p>
+        <div class="tags">dbt · Snowflake · Tableau · Python</div>
+      </div>
+      <div class="pcard" style="--stat-color: var(--accent);">
+        <div class="pnum">03 — SQL / BI</div>
+        <h3>Hotel Booking Demand — Cancellation Analysis</h3>
+        <div class="stat">€1.93M</div>
+        <div class="stat-label">recoverable revenue identified</div>
+        <p>SQL (MySQL) investigation and Power BI dashboard on 119,390 reservations: isolated the
+        "Groups" segment and "Non Refund" deposits as the main cancellation risk, traced 78% of
+        Non Refund cancellations to 15 agents, and quantified a targeted recommendation.</p>
+        <div class="tags">MySQL · Power BI · DAX</div>
+        <a class="link" href="https://github.com/malickmt/hotel-booking-demand-analysis" target="_blank">View code →</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section>
-    <h2>Expérience professionnelle</h2>
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow">Professional Experience</div>
 
     <div class="item">
       <div class="item-head">
@@ -188,77 +291,53 @@
         <span class="item-date">2025</span>
       </div>
       <ul class="bullets">
-        <li>Sécurisation de 15 000 à 20 000 € d'économies sur les marges fournisseurs via l'analyse de rentabilité et le calcul de ROI sur plus de 20 projets opérationnels</li>
-        <li>Réduction du délai de reporting mensuel de 3 jours à 2 heures grâce à la conception de 3 dashboards Power BI et l'automatisation des flux via Power Query</li>
-        <li>Autonomisation de 8 collaborateurs sur les nouveaux outils d'analyse via le cadrage des besoins et la formation</li>
+        <li>Secured €15,000–20,000 in savings on supplier margins through profitability analysis and ROI calculation across 20+ operational projects</li>
+        <li>Cut monthly reporting time from 3 days to 2 hours by building 3 Power BI dashboards</li>
+        <li>Trained and enabled 8 team members on new analytics tools</li>
       </ul>
     </div>
 
     <div class="item">
       <div class="item-head">
-        <span class="item-title">Business Analyst <span class="item-org">— LHA London, Londres</span></span>
-        <span class="item-date">Sept. 2021 – Nov. 2022</span>
+        <span class="item-title">Business Analyst <span class="item-org">— LHA London, London</span></span>
+        <span class="item-date">2021–2022</span>
       </div>
       <ul class="bullets">
-        <li>Réduction de 28% des écarts budget vs. réel dès la première année grâce à la conception d'outils de prévision budgétaire agiles, sur un portefeuille de 12 résidences</li>
-        <li>Contrôle de gestion opérationnel (OPEX) et pilotage de KPI sectoriels ; reporting international en anglais</li>
+        <li>Reduced budget-vs-actual variance by 28% across a 12-property portfolio</li>
+        <li>Operational budget control and international reporting in English</li>
       </ul>
     </div>
 
     <div class="item">
       <div class="item-head">
         <span class="item-title">Association Executive <span class="item-org">— OPA Finance Club, NEOMA</span></span>
-        <span class="item-date">Nov. 2023 – Déc. 2024</span>
+        <span class="item-date">2023–2024</span>
       </div>
       <ul class="bullets">
-        <li>Rédaction de plus de 40 rapports hebdomadaires sur l'actualité des marchés financiers</li>
-        <li>Organisation d'événements marchés et gestion des partenariats avec des institutions financières</li>
+        <li>Wrote 40+ weekly reports on financial markets news</li>
       </ul>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section>
-    <h2>Compétences</h2>
-    <div class="skills-grid">
-      <div>
-        <div class="skill-cat">Data &amp; Programmation</div>
-        <div class="skill-list">SQL · Python (pandas, numpy, scikit-learn) · Power BI (DAX)</div>
-      </div>
-      <div>
-        <div class="skill-cat">Marchés financiers</div>
-        <div class="skill-list">Produits dérivés, valorisation, risque de contrepartie</div>
-      </div>
-      <div>
-        <div class="skill-cat">Finance opérationnelle</div>
-        <div class="skill-list">Analyse de rentabilité, contrôle budgétaire, modélisation financière</div>
-      </div>
-      <div>
-        <div class="skill-cat">Méthodologies</div>
-        <div class="skill-list">Agile/Scrum, BPMN/UML, gestion de projet, stakeholder management</div>
-      </div>
+<section id="contact" class="contact-section">
+  <div class="wrap">
+    <h2 class="contact-title">Contact</h2>
+    <p class="contact-sentence">
+      Have a question about my profile or an opportunity to discuss? I'd be glad to hear from you at
+      <a href="mailto:malicktandine98@gmail.com">malicktandine98@gmail.com</a>.
+    </p>
+    <div class="contact-buttons">
+      <a class="contact-btn" href="https://github.com/malickmt" target="_blank">GitHub</a>
+      <a class="contact-btn" href="https://www.linkedin.com/in/malick-tandine-2b14a7187/" target="_blank">LinkedIn</a>
+      <a class="contact-btn primary" href="mailto:malicktandine98@gmail.com">Mail</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section>
-    <h2>Formation</h2>
-    <div class="item">
-      <div class="item-head">
-        <span class="item-title">Master Financial Markets and Technologies <span class="item-org">— NEOMA Business School</span></span>
-        <span class="item-date">Déc. 2025</span>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-head">
-        <span class="item-title">Licence Économie et Gestion <span class="item-org">— CY Cergy Paris Université</span></span>
-        <span class="item-date">Mai 2021</span>
-      </div>
-    </div>
-  </section>
+<footer>
+  French (native) · English (C2) · Spanish (A2) — Chess · Bouldering
+</footer>
 
-  <footer>
-    Français (natif) · Anglais (C2) · Espagnol (A2) — Échecs · Escalade de bloc
-  </footer>
-
-</div>
 </body>
 </html>
