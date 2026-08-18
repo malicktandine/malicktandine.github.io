@@ -14,8 +14,6 @@
     --accent3: #ebaf58;
     --muted: #6b7280;
     --line: #e5e7eb;
-    --circle-bg: #1f2b3a;
-    --circle-ink: #ffffff;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -39,49 +37,41 @@
   nav a { font-weight: 600; font-size: 0.9rem; text-decoration: none; }
   nav a:hover { color: var(--accent); }
 
-  /* ===== HERO ===== */
-  .hero { padding: 4.5rem 0 3.5rem; text-align: center; }
-  .hero-photo {
-    width: 110px; height: 110px; margin: 0 auto 1.6rem;
-    border-radius: 50%; background: var(--circle-bg); color: var(--circle-ink);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2.2rem; font-weight: 700;
+  /* ===== INTRO (photo + text, Yan Holtz style) ===== */
+  .intro { padding: 3.5rem 0 3rem; }
+  .intro-grid { display: flex; gap: 2.5rem; align-items: flex-start; }
+  .intro-photo {
+    width: 220px; height: 220px; flex: none;
+    border-radius: 12px; object-fit: cover;
+    filter: brightness(1.15) contrast(1.03);
   }
-  .hero h1 { font-size: 1.7rem; font-weight: 700; margin: 0 0 0.6rem; }
-  .hero .tagline { font-size: 1.15rem; color: var(--muted); max-width: 46ch; margin: 0 auto 0.5rem; }
-  .hero .subtagline { font-size: 0.95rem; color: var(--muted); max-width: 52ch; margin: 0 auto 1.8rem; }
-  .hero .subtagline b { color: var(--ink); font-weight: 600; }
-  .hero-cta { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.6rem; }
-  .btn {
-    border: 1.5px solid var(--ink); border-radius: 999px;
-    padding: 0.65rem 1.5rem; font-weight: 600; font-size: 0.9rem;
-    text-decoration: none;
+  .intro-text p { margin: 0 0 1rem; font-size: 1rem; }
+  .intro-hi { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.1rem !important; }
+  .intro-text b { font-weight: 700; }
+  .intro-text a { text-decoration: underline; }
+  .intro-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.4rem; }
+  .pill {
+    border: 1.5px solid var(--accent); color: var(--accent);
+    border-radius: 999px; padding: 0.6rem 1.4rem;
+    font-weight: 600; font-size: 0.88rem; text-decoration: none;
   }
-  .btn.primary { background: var(--ink); color: #fff; }
-  .hero-social { display: flex; gap: 0.9rem; justify-content: center; }
-  .icon-circle {
-    width: 38px; height: 38px; border-radius: 50%;
-    border: 1.5px solid var(--line);
-    display: flex; align-items: center; justify-content: center;
-    text-decoration: none;
-  }
-  .icon-circle svg { width: 16px; height: 16px; }
-  .icon-circle:hover { border-color: var(--ink); }
+  .pill:hover { opacity: 0.8; }
+  .pill.primary { background: var(--accent); color: #fff; }
 
   section { padding: 3.5rem 0; border-top: 1px solid var(--line); }
   .eyebrow { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 700; margin-bottom: 1.5rem; }
 
-  /* ===== ABOUT + TIMELINE ===== */
-  .about-lead { font-size: 1.02rem; max-width: 66ch; margin-bottom: 2.2rem; }
-  .about-lead b { font-weight: 700; }
-  .timeline { display: flex; justify-content: space-between; position: relative; padding-top: 1.5rem; }
-  .timeline::before { content: ""; position: absolute; top: 6px; left: 0; right: 0; height: 2px; background: var(--line); }
-  .tstep { text-align: center; flex: 1; position: relative; font-size: 0.82rem; color: var(--muted); }
-  .tstep::before {
-    content: ""; position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
-    width: 10px; height: 10px; border-radius: 50%; background: var(--ink);
+  /* ===== TIMELINE ===== */
+  .timeline { display: flex; justify-content: space-between; gap: 0.8rem; position: relative; margin-top: 3rem; }
+  .timeline::before { content: ""; position: absolute; top: 40px; left: 0; right: 0; height: 2px; background: var(--line); }
+  .tstep { text-align: center; flex: 1; position: relative; }
+  .tstep::after {
+    content: ""; position: absolute; top: 35px; left: 50%; transform: translateX(-50%);
+    width: 10px; height: 10px; border-radius: 50%; background: var(--accent);
   }
-  .tstep b { display: block; color: var(--ink); font-size: 0.88rem; margin-bottom: 0.2rem; }
+  .trole { font-size: 0.8rem; font-weight: 600; min-height: 2.3em; display: flex; align-items: flex-end; justify-content: center; }
+  .tyear { font-size: 1.2rem; font-weight: 800; margin: 2.6rem 0 0.15rem; }
+  .torg { font-size: 0.78rem; font-style: italic; color: var(--muted); }
 
   /* ===== WHAT I DO (3 cols) ===== */
   .help-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
@@ -147,10 +137,14 @@
 
   @media (max-width: 640px) {
     .help-grid, .portfolio-grid { grid-template-columns: 1fr; }
-    .timeline { flex-direction: column; gap: 1.2rem; align-items: flex-start; }
+    .intro-grid { flex-direction: column; align-items: center; text-align: center; }
+    .intro-buttons { justify-content: center; }
+    .timeline { flex-direction: column; gap: 1.4rem; align-items: flex-start; margin-top: 1.5rem; }
     .timeline::before { display: none; }
-    .tstep::before { left: -18px; top: 4px; }
-    .tstep { text-align: left; padding-left: 1.2rem; }
+    .tstep::after { left: 0; top: 4px; transform: none; }
+    .tstep { text-align: left; padding-left: 1.4rem; }
+    .trole { min-height: 0; justify-content: flex-start; margin-bottom: 0.3rem; }
+    .tyear { margin: 0 0 0.15rem; }
     .contact-title { font-size: 2.2rem; }
   }
 </style>
@@ -160,7 +154,6 @@
 <nav>
   <div class="wrap">
     <a href="#home">Home</a>
-    <a href="#about">Profile</a>
     <a href="#help">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#experience">Experience</a>
@@ -168,48 +161,54 @@
   </div>
 </nav>
 
-<section id="home" class="hero" style="border-top:none;">
-  <div class="wrap">
-    <div class="hero-photo">TM</div>
-    <h1>Tandine Malick</h1>
-    <p class="tagline">Financial analysis and data for reliable market decisions.</p>
-    <p class="subtagline">
-      I'm a <b>Business Analyst</b>, graduate of the Financial Markets and Technologies Master's
-      (NEOMA), and I can help you with counterparty risk analysis, data and performance management.
-    </p>
-    <div class="hero-cta">
-      <a class="btn primary" href="#projects">See my projects</a>
-      <a class="btn" href="#contact">Get in touch</a>
-    </div>
-    <div class="hero-social">
-      <a class="icon-circle" href="https://www.linkedin.com/in/malick-tandine-2b14a7187/" target="_blank" title="LinkedIn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-      </a>
-      <a class="icon-circle" href="https://github.com/malickmt" target="_blank" title="GitHub">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.39 7.86 10.91.57.1.79-.25.79-.55v-2.1c-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.02 11.02 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.27 5.67.42.36.78 1.07.78 2.16v3.2c0 .31.21.66.8.55A10.51 10.51 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg>
-      </a>
-      <a class="icon-circle" href="mailto:malicktandine98@gmail.com" title="Email">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg>
-      </a>
+<section id="home" class="intro" style="border-top:none;">
+  <div class="wrap intro-grid">
+    <img class="intro-photo" src="photo.jpg" alt="Tandine Malick">
+    <div class="intro-text">
+      <p class="intro-hi">Hi, I'm Malick.</p>
+      <p>I'm a <b>Business Analyst</b>, graduate of NEOMA Business School's <b>Financial Markets and
+      Technologies</b> Master's. I combine a solid understanding of financial markets (derivatives,
+      valuation, counterparty risk) with hands-on expertise in financial analysis and data
+      (<b>SQL</b>, <b>Python</b>, <b>Power BI</b>).</p>
+      <p>2 years of international experience (<b>London</b>, <b>Johannesburg</b>), fluent English (C2).
+      I help teams turn raw data and business questions into clear, reliable decisions.</p>
+      <p>Currently looking for a full-time role as a Business Analyst, with data and Power BI as
+      a natural next step.</p>
+      <div class="intro-buttons">
+        <a class="pill" href="https://www.linkedin.com/in/malick-tandine-2b14a7187/" target="_blank">LinkedIn</a>
+        <a class="pill" href="https://github.com/malickmt" target="_blank">GitHub</a>
+        <a class="pill" href="#projects">Projects</a>
+        <a class="pill primary" href="#contact">Contact</a>
+      </div>
     </div>
   </div>
-</section>
-
-<section id="about">
   <div class="wrap">
-    <div class="eyebrow">Bio</div>
-    <p class="about-lead">
-      <b>Hi, I'm Malick.</b> Graduate of NEOMA Business School's Financial Markets and Technologies
-      Master's, I combine a solid understanding of financial markets (derivatives, valuation,
-      counterparty risk) with hands-on expertise in financial analysis and data (SQL, Python, Power BI).
-      2 years of international experience (London, Johannesburg), fluent English (C2).
-    </p>
     <div class="timeline">
-      <div class="tstep"><b>BA Economics &amp; Management</b>CY Cergy Paris<br>2021</div>
-      <div class="tstep"><b>Business Analyst</b>LHA London<br>2021–2022</div>
-      <div class="tstep"><b>Association Executive</b>OPA Finance Club<br>2023–2024</div>
-      <div class="tstep"><b>Business Analyst</b>JJ Conference<br>2025</div>
-      <div class="tstep"><b>Master FMT</b>NEOMA<br>2025</div>
+      <div class="tstep">
+        <div class="trole">BA Economics &amp; Management</div>
+        <div class="tyear">2021</div>
+        <div class="torg">CY Cergy Paris</div>
+      </div>
+      <div class="tstep">
+        <div class="trole">Business Analyst</div>
+        <div class="tyear">2021–22</div>
+        <div class="torg">LHA London</div>
+      </div>
+      <div class="tstep">
+        <div class="trole">Association Executive</div>
+        <div class="tyear">2023–24</div>
+        <div class="torg">OPA Finance Club</div>
+      </div>
+      <div class="tstep">
+        <div class="trole">Business Analyst</div>
+        <div class="tyear">2025</div>
+        <div class="torg">JJ Conference</div>
+      </div>
+      <div class="tstep">
+        <div class="trole">Master FMT</div>
+        <div class="tyear">2025</div>
+        <div class="torg">NEOMA</div>
+      </div>
     </div>
   </div>
 </section>
