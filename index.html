@@ -19,6 +19,7 @@
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
+    position: relative;
     font-family: "Segoe UI", -apple-system, Helvetica, Arial, sans-serif;
     color: var(--ink);
     background: var(--bg);
@@ -34,8 +35,13 @@
     border-bottom: 1px solid var(--line);
   }
   nav .wrap { display: flex; justify-content: flex-end; gap: 2rem; padding: 1.1rem 1.5rem; flex-wrap: wrap; }
-  nav a { font-weight: 600; font-size: 0.9rem; text-decoration: none; }
+  nav a { font-weight: 600; font-size: 0.9rem; text-decoration: none; position: relative; }
+  nav a::after {
+    content: ""; position: absolute; left: 0; right: 100%; bottom: -4px; height: 2px;
+    background: var(--accent); transition: right 0.25s ease;
+  }
   nav a:hover { color: var(--accent); }
+  nav a:hover::after { right: 0; }
 
   /* ===== INTRO (photo + text, Yan Holtz style) ===== */
   .intro { padding: 3.5rem 0 3rem; }
@@ -54,8 +60,9 @@
     border: 1.5px solid var(--accent); color: var(--accent);
     border-radius: 999px; padding: 0.6rem 1.4rem;
     font-weight: 600; font-size: 0.88rem; text-decoration: none;
+    transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
   }
-  .pill:hover { opacity: 0.8; }
+  .pill:hover { opacity: 0.85; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(86,170,179,0.25); }
   .pill.primary { background: var(--accent); color: #fff; }
 
   section { padding: 3.5rem 0; border-top: 1px solid var(--line); }
@@ -75,14 +82,17 @@
 
   /* ===== WHAT I DO (3 cols) ===== */
   .help-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-  .help-card { text-align: center; }
+  .help-card { text-align: center; padding: 1rem; border-radius: 12px; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .help-card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(31,43,58,0.08); }
   .help-icon {
     width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 1rem;
     border: 2px solid var(--icon-color, var(--accent));
     color: var(--icon-color, var(--accent));
     display: flex; align-items: center; justify-content: center;
     font-weight: 700; font-size: 1.1rem;
+    transition: transform 0.25s ease;
   }
+  .help-card:hover .help-icon { transform: scale(1.1); }
   .help-card h3 { font-size: 1.02rem; margin: 0 0 0.6rem; }
   .help-card p { font-size: 0.9rem; color: var(--muted); margin: 0 0 1rem; }
   .help-card a { font-size: 0.85rem; font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--ink); }
@@ -92,6 +102,12 @@
   .pcard {
     border: 1px solid var(--line); border-radius: 10px; padding: 1.4rem;
     border-top: 3px solid var(--stat-color, var(--accent));
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .pcard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(31,43,58,0.1);
+    border-color: var(--stat-color, var(--accent));
   }
   .pcard .pnum { font-size: 0.78rem; color: var(--muted); font-weight: 700; margin-bottom: 0.6rem; }
   .pcard h3 { font-size: 1rem; margin: 0 0 0.7rem; }
@@ -131,9 +147,61 @@
     text-decoration: none;
   }
   .contact-btn.primary { background: var(--accent); color: #fff; }
-  .contact-btn:hover { opacity: 0.85; }
+  .contact-btn { transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease; }
+  .contact-btn:hover { opacity: 0.85; transform: translateY(-2px); box-shadow: 0 8px 18px rgba(86,170,179,0.25); }
 
   footer { padding: 2.2rem 0; text-align: center; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--line); }
+
+  /* ===== AMBIENT BACKGROUND: subtle data-grid + soft glow ===== */
+  .bg-ambient {
+    position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+  }
+  .bg-grid {
+    position: absolute; inset: -2px;
+    background-image: radial-gradient(var(--line) 1px, transparent 1px);
+    background-size: 26px 26px;
+    opacity: 0.55;
+    -webkit-mask-image: radial-gradient(ellipse 75% 60% at 50% 0%, #000 40%, transparent 100%);
+    mask-image: radial-gradient(ellipse 75% 60% at 50% 0%, #000 40%, transparent 100%);
+  }
+  .bg-glow {
+    position: absolute; top: -220px; left: 50%; transform: translateX(-50%);
+    width: 780px; height: 780px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(31,43,58,0.05) 0%, rgba(31,43,58,0) 70%);
+    animation: glowPulse 12s ease-in-out infinite;
+  }
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.06); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bg-glow { animation: none; }
+  }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .reveal-stagger.is-visible .reveal-item { opacity: 1; transform: none; }
+  .reveal-item { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal-stagger.is-visible .reveal-item:nth-child(1) { transition-delay: 0.05s; }
+  .reveal-stagger.is-visible .reveal-item:nth-child(2) { transition-delay: 0.15s; }
+  .reveal-stagger.is-visible .reveal-item:nth-child(3) { transition-delay: 0.25s; }
+  .reveal-stagger.is-visible .reveal-item:nth-child(4) { transition-delay: 0.35s; }
+  .reveal-stagger.is-visible .reveal-item:nth-child(5) { transition-delay: 0.45s; }
+
+  .intro-photo, .intro-text > * { opacity: 0; transform: translateY(14px); animation: introIn 0.7s ease forwards; }
+  .intro-photo { animation-delay: 0.05s; }
+  .intro-text > *:nth-child(1) { animation-delay: 0.15s; }
+  .intro-text > *:nth-child(2) { animation-delay: 0.25s; }
+  .intro-text > *:nth-child(3) { animation-delay: 0.35s; }
+  .intro-text > *:nth-child(4) { animation-delay: 0.45s; }
+  .intro-text > *:nth-child(5) { animation-delay: 0.55s; }
+  @keyframes introIn { to { opacity: 1; transform: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal-item, .intro-photo, .intro-text > * { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+    .pill:hover, .contact-btn:hover, .pcard:hover, .help-card:hover, .help-card:hover .help-icon { transform: none; }
+  }
 
   @media (max-width: 640px) {
     .help-grid, .portfolio-grid { grid-template-columns: 1fr; }
@@ -150,6 +218,11 @@
 </style>
 </head>
 <body>
+
+<div class="bg-ambient">
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+</div>
 
 <nav>
   <div class="wrap">
@@ -176,38 +249,33 @@
       a natural next step.</p>
       <div class="intro-buttons">
         <a class="pill" href="https://www.linkedin.com/in/malick-tandine-2b14a7187/" target="_blank">LinkedIn</a>
-        <a class="pill" href="https://github.com/malickmt" target="_blank">GitHub</a>
+        <a class="pill" href="https://github.com/malicktandine" target="_blank">GitHub</a>
         <a class="pill" href="#projects">Projects</a>
         <a class="pill primary" href="#contact">Contact</a>
       </div>
     </div>
   </div>
   <div class="wrap">
-    <div class="timeline">
-      <div class="tstep">
+    <div class="timeline reveal-stagger">
+      <div class="tstep reveal-item">
         <div class="trole">BA Economics &amp; Management</div>
-        <div class="tyear">2021</div>
+        <div class="tyear">2017–22</div>
         <div class="torg">CY Cergy Paris</div>
       </div>
-      <div class="tstep">
+      <div class="tstep reveal-item">
         <div class="trole">Business Analyst</div>
         <div class="tyear">2021–22</div>
         <div class="torg">LHA London</div>
       </div>
-      <div class="tstep">
-        <div class="trole">Association Executive</div>
-        <div class="tyear">2023–24</div>
-        <div class="torg">OPA Finance Club</div>
+      <div class="tstep reveal-item">
+        <div class="trole">Master FMT</div>
+        <div class="tyear">2023–25</div>
+        <div class="torg">NEOMA</div>
       </div>
-      <div class="tstep">
+      <div class="tstep reveal-item">
         <div class="trole">Business Analyst</div>
         <div class="tyear">2025</div>
         <div class="torg">JJ Conference</div>
-      </div>
-      <div class="tstep">
-        <div class="trole">Master FMT</div>
-        <div class="tyear">2025</div>
-        <div class="torg">NEOMA</div>
       </div>
     </div>
   </div>
@@ -216,22 +284,22 @@
 <section id="help">
   <div class="wrap">
     <div class="eyebrow">What I can do</div>
-    <div class="help-grid">
-      <div class="help-card" style="--icon-color: var(--accent2);">
+    <div class="help-grid reveal-stagger">
+      <div class="help-card reveal-item" style="--icon-color: var(--accent2);">
         <div class="help-icon">Δ</div>
         <h3>Markets &amp; Risk</h3>
         <p>Derivatives, valuation, counterparty risk (xVA/PFE) — explored end-to-end through a
         personal project.</p>
         <a href="#projects">See the project →</a>
       </div>
-      <div class="help-card" style="--icon-color: var(--accent);">
+      <div class="help-card reveal-item" style="--icon-color: var(--accent);">
         <div class="help-icon">{ }</div>
         <h3>Data &amp; BI</h3>
         <p>SQL, Python (pandas, numpy, scikit-learn), Power BI (DAX) — from raw data to an
         actionable dashboard.</p>
         <a href="#projects">See the project →</a>
       </div>
-      <div class="help-card" style="--icon-color: var(--accent3);">
+      <div class="help-card reveal-item" style="--icon-color: var(--accent3);">
         <div class="help-icon">✓</div>
         <h3>Analysis &amp; Delivery</h3>
         <p>Requirements gathering, ROI, budget control, Agile/Scrum — turning a business need into
@@ -245,8 +313,8 @@
 <section id="projects">
   <div class="wrap">
     <div class="eyebrow">Projects</div>
-    <div class="portfolio-grid">
-      <div class="pcard" style="--stat-color: var(--accent2);">
+    <div class="portfolio-grid reveal-stagger">
+      <div class="pcard reveal-item" style="--stat-color: var(--accent2);">
         <div class="pnum">01 — PYTHON</div>
         <h3>CVA Modeling on an Interest Rate Swap</h3>
         <div class="stat">10,000</div>
@@ -254,9 +322,9 @@
         <p>Monte Carlo simulation (Vasicek), swap valuation, exposure profile calculation (EE, PFE)
         and CVA — built from scratch, no pricing library. Limitations documented.</p>
         <div class="tags">Python · NumPy · Monte Carlo</div>
-        <a class="link" href="https://github.com/malickmt/cva-swap-pricing" target="_blank">View code →</a>
+        <a class="link" href="https://github.com/malicktandine/cva-swap-pricing" target="_blank">View code →</a>
       </div>
-      <div class="pcard" style="--stat-color: var(--accent3);">
+      <div class="pcard reveal-item" style="--stat-color: var(--accent3);">
         <div class="pnum">02 — DATA</div>
         <h3>KPI Governance — NovaRetail</h3>
         <div class="stat">2.72%</div>
@@ -265,7 +333,7 @@
         and Tableau dashboard for reporting.</p>
         <div class="tags">dbt · Snowflake · Tableau · Python</div>
       </div>
-      <div class="pcard" style="--stat-color: var(--accent);">
+      <div class="pcard reveal-item" style="--stat-color: var(--accent);">
         <div class="pnum">03 — SQL / BI</div>
         <h3>Hotel Booking Demand — Cancellation Analysis</h3>
         <div class="stat">€1.93M</div>
@@ -274,7 +342,7 @@
         "Groups" segment and "Non Refund" deposits as the main cancellation risk, traced 78% of
         Non Refund cancellations to 15 agents, and quantified a targeted recommendation.</p>
         <div class="tags">MySQL · Power BI · DAX</div>
-        <a class="link" href="https://github.com/malickmt/hotel-booking-demand-analysis" target="_blank">View code →</a>
+        <a class="link" href="https://github.com/malicktandine/hotel-booking-demand-analysis" target="_blank">View code →</a>
       </div>
     </div>
   </div>
@@ -284,7 +352,8 @@
   <div class="wrap">
     <div class="eyebrow">Professional Experience</div>
 
-    <div class="item">
+    <div class="reveal-stagger">
+    <div class="item reveal-item">
       <div class="item-head">
         <span class="item-title">Business Analyst <span class="item-org">— JJ Conference &amp; Travels, Johannesburg</span></span>
         <span class="item-date">2025</span>
@@ -296,7 +365,7 @@
       </ul>
     </div>
 
-    <div class="item">
+    <div class="item reveal-item">
       <div class="item-head">
         <span class="item-title">Business Analyst <span class="item-org">— LHA London, London</span></span>
         <span class="item-date">2021–2022</span>
@@ -307,7 +376,7 @@
       </ul>
     </div>
 
-    <div class="item">
+    <div class="item reveal-item">
       <div class="item-head">
         <span class="item-title">Association Executive <span class="item-org">— OPA Finance Club, NEOMA</span></span>
         <span class="item-date">2023–2024</span>
@@ -316,18 +385,19 @@
         <li>Wrote 40+ weekly reports on financial markets news</li>
       </ul>
     </div>
+    </div>
   </div>
 </section>
 
 <section id="contact" class="contact-section">
-  <div class="wrap">
+  <div class="wrap reveal">
     <h2 class="contact-title">Contact</h2>
     <p class="contact-sentence">
       Have a question about my profile or an opportunity to discuss? I'd be glad to hear from you at
       <a href="mailto:malicktandine98@gmail.com">malicktandine98@gmail.com</a>.
     </p>
     <div class="contact-buttons">
-      <a class="contact-btn" href="https://github.com/malickmt" target="_blank">GitHub</a>
+      <a class="contact-btn" href="https://github.com/malicktandine" target="_blank">GitHub</a>
       <a class="contact-btn" href="https://www.linkedin.com/in/malick-tandine-2b14a7187/" target="_blank">LinkedIn</a>
       <a class="contact-btn primary" href="mailto:malicktandine98@gmail.com">Mail</a>
     </div>
@@ -338,5 +408,22 @@
   French (native) · English (C2) · Spanish (A2) — Chess · Bouldering
 </footer>
 
+
+<script>
+  var revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  if ('IntersectionObserver' in window && revealEls.length) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { observer.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+</script>
 </body>
 </html>
