@@ -63,6 +63,7 @@
   }
   .intro-text p { margin: 0 0 1rem; font-size: 1rem; }
   .intro-hi { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.1rem !important; }
+  .intro-tagline { font-size: 1.08rem; font-weight: 600; color: var(--accent); margin-bottom: 1.3rem !important; }
   .intro-text b { font-weight: 700; }
   .intro-text a { text-decoration: underline; }
   .intro-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.4rem; }
@@ -129,6 +130,22 @@
 
   /* ===== CASE STUDY ===== */
   .cs-lede { font-size: 1rem; color: var(--muted); max-width: 64ch; margin: 0 0 1.8rem; }
+  .cs-summary {
+    display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap;
+    padding: 1rem 1.2rem; background: var(--bg-soft); border-radius: 10px; margin-bottom: 1rem;
+  }
+  .cs-summary-stat { font-size: 1.5rem; font-weight: 800; color: var(--accent3); white-space: nowrap; }
+  .cs-summary p { margin: 0; font-size: 0.9rem; color: var(--ink); }
+  .cs-toggle {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: none; border: 1.5px solid var(--accent); color: var(--accent);
+    border-radius: 999px; padding: 0.6rem 1.3rem; font-size: 0.85rem; font-weight: 600;
+    font-family: inherit; cursor: pointer; margin-bottom: 1.8rem;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .cs-toggle:hover { background: var(--accent); color: #fff; }
+  .cs-arrow { transition: transform 0.25s ease; display: inline-block; }
+  .cs-toggle[aria-expanded="true"] .cs-arrow { transform: rotate(180deg); }
   .cs-block { margin-bottom: 2.2rem; }
   .cs-block:last-child { margin-bottom: 0; }
   .cs-block h3.cs-h { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 700; margin: 0 0 1rem; }
@@ -254,6 +271,7 @@
   .intro-text > *:nth-child(3) { animation-delay: 0.35s; }
   .intro-text > *:nth-child(4) { animation-delay: 0.45s; }
   .intro-text > *:nth-child(5) { animation-delay: 0.55s; }
+  .intro-text > *:nth-child(6) { animation-delay: 0.65s; }
   @keyframes introIn { to { opacity: 1; transform: none; } }
 
   @media (prefers-reduced-motion: reduce) {
@@ -298,6 +316,7 @@
     <img class="intro-photo" src="photo.jpg" alt="Tandine Malick">
     <div class="intro-text">
       <p class="intro-hi">Hi, I'm Malick.</p>
+      <p class="intro-tagline">I write the spec — then I run the SQL myself to prove the numbers behind it are right.</p>
       <p>I'm a <b>Business Analyst / AMOA</b>, graduate of NEOMA Business School's <b>MSc International
       Finance</b> (Financial Markets &amp; Risk Management track). I gather and formalize business requirements, write functional
       specifications and User Stories, and control data quality and consistency (<b>SQL</b>) across
@@ -421,6 +440,15 @@
     didn't agree on what "revenue" and "loyal customer" meant. Here's the requirements work that came
     first: stakeholder alignment, scope boundaries, and the User Stories that came out of it.</p>
 
+    <div class="cs-summary">
+      <div class="cs-summary-stat">2.72%</div>
+      <p>revenue discrepancy found once Marketing and Finance were aligned on a single KPI definition.</p>
+    </div>
+    <button class="cs-toggle" data-target="cs-detail-novaretail" aria-expanded="false">
+      Show full case study — stakeholders, scope, KPI governance, 3 User Stories <span class="cs-arrow">▾</span>
+    </button>
+
+    <div class="cs-detail" id="cs-detail-novaretail" hidden>
     <div class="cs-block">
       <h3 class="cs-h">Context &amp; business need</h3>
       <p style="font-size:0.92rem; margin:0;">NovaRetail is a multi-vendor marketplace. Marketing
@@ -538,6 +566,7 @@
         Finance and Marketing had been arguing past each other about.</p>
       </div>
     </div>
+    </div>
   </div>
 </section>
 
@@ -549,6 +578,15 @@
     narrowing a vague "cancellations are too high" concern down to 15 named agents, while handling a
     real data quality issue along the way.</p>
 
+    <div class="cs-summary">
+      <div class="cs-summary-stat">€1.93M</div>
+      <p>recoverable revenue traced from a vague cancellation concern down to 15 named agents.</p>
+    </div>
+    <button class="cs-toggle" data-target="cs-detail-hotel" aria-expanded="false">
+      Show full investigation — data quality fix, recommendation, 3 User Stories <span class="cs-arrow">▾</span>
+    </button>
+
+    <div class="cs-detail" id="cs-detail-hotel" hidden>
     <div class="cs-block">
       <h3 class="cs-h">Business question</h3>
       <p style="font-size:0.92rem; margin:0;">The overall cancellation rate across 119,390 reservations
@@ -635,6 +673,7 @@
         policy-second path recommended as the safer way to capture it.</p>
       </div>
     </div>
+    </div>
   </div>
 </section>
 
@@ -713,6 +752,33 @@
     revealEls.forEach(function (el) { observer.observe(el); });
   } else {
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  function expandCaseStudy(btn) {
+    var target = document.getElementById(btn.getAttribute('data-target'));
+    target.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    target.querySelectorAll('.reveal, .reveal-stagger').forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+  }
+  document.querySelectorAll('.cs-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      if (expanded) {
+        document.getElementById(btn.getAttribute('data-target')).hidden = true;
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        expandCaseStudy(btn);
+      }
+    });
+  });
+  if (location.hash === '#case-study') {
+    var b = document.querySelector('.cs-toggle[data-target="cs-detail-novaretail"]');
+    if (b) expandCaseStudy(b);
+  } else if (location.hash === '#case-study-hotel') {
+    var b2 = document.querySelector('.cs-toggle[data-target="cs-detail-hotel"]');
+    if (b2) expandCaseStudy(b2);
   }
 </script>
 </body>
