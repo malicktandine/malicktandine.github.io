@@ -287,7 +287,7 @@
     <a href="#home">Home</a>
     <a href="#help">Skills</a>
     <a href="#projects">Projects</a>
-    <a href="#case-study">Case Study</a>
+    <a href="#case-study">Case Studies</a>
     <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
   </div>
@@ -396,6 +396,7 @@
         Non Refund cancellations to 15 agents, and quantified a targeted recommendation.</p>
         <div class="tags">MySQL · Power BI · DAX</div>
         <a class="link" href="https://github.com/malicktandine/hotel-booking-demand-analysis" target="_blank">View code →</a>
+        <a class="link" href="#case-study-hotel" style="margin-left:1rem;">View investigation →</a>
       </div>
       <div class="pcard reveal-item" style="--stat-color: var(--accent2);">
         <div class="pnum">03 — PYTHON</div>
@@ -534,6 +535,103 @@
         <p>revenue discrepancy identified between the gross and net-of-cancellations definitions once
         this scope was built on Snowflake (dbt, automated tests) across ~99,400 orders — the exact gap
         Finance and Marketing had been arguing past each other about.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="case-study-hotel">
+  <div class="wrap">
+    <div class="eyebrow">Investigation case study</div>
+    <h2 style="font-size:1.4rem; margin:0 0 0.8rem;">Hotel Booking Demand — From a cancellation question to a targeted recommendation</h2>
+    <p class="cs-lede">No stakeholder conflict to resolve here — this one is a straight investigation:
+    narrowing a vague "cancellations are too high" concern down to 15 named agents, while handling a
+    real data quality issue along the way.</p>
+
+    <div class="cs-block">
+      <h3 class="cs-h">Business question</h3>
+      <p style="font-size:0.92rem; margin:0;">The overall cancellation rate across 119,390 reservations
+      is 37%. Which segments concentrate the risk, and what action would recover the most revenue?</p>
+    </div>
+
+    <div class="cs-block">
+      <h3 class="cs-h">Investigation path</h3>
+      <div class="kpi-card" style="--stat-color: var(--accent3); grid-column: 1 / -1;">
+        <ul>
+          <li><b>Groups segment</b> — cancellation rate of 61%, nearly double other segments (13–37%);
+          19,557 reservations, €2.80M in lost revenue over the period</li>
+          <li><b>"Non Refund" deposits</b> — 99.4% cancellation rate (14,590 reservations), checked
+          against <code>reservation_status</code> to rule out a data artifact before trusting the number</li>
+          <li><b>Concentration by agent</b> — 78% of Non Refund cancellations trace to just 15 agents,
+          one alone accounting for 28%; <code>company</code> empty on 97% of these, so it runs through
+          travel agencies, not corporate accounts</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <h3 class="cs-h">Data quality handled, not ignored</h3>
+      <p style="font-size:0.92rem; margin:0;">The <code>children</code> column held the literal text
+      <code>"NA"</code> on 4 rows instead of a number or a blank — a direct load fails on that. Fixed by
+      loading the column into a session variable and converting <code>"NA"</code> to <code>NULL</code>
+      before insertion (<code>NULLIF(@children, 'NA')</code>), rather than dropping the rows. All
+      119,390 rows loaded cleanly after the fix, 0 warnings.</p>
+    </div>
+
+    <div class="cs-block">
+      <h3 class="cs-h">Recommendation — and the caveat stated up front</h3>
+      <p style="font-size:0.92rem; margin:0 0 0.8rem;">A partial non-refundable deposit or firm
+      confirmation date for group bookings could recover up to €1.93M if it brought the Groups
+      cancellation rate down to the Corporate segment's level (19%). <b>Caveat stated explicitly</b>: a
+      policy perceived as too restrictive by group-booking agencies could also reduce booking volume,
+      not just the cancellation rate — the two effects need monitoring together, not assumed
+      independently. Recommended first step: a targeted audit of the top 5 "Non Refund" agents (46% of
+      concentrated cancellations) rather than a blanket policy change.</p>
+    </div>
+
+    <div class="cs-block">
+      <h3 class="cs-h">From findings to User Stories</h3>
+      <div class="us-card">
+        <div class="us-num">US-01</div>
+        <div class="us-statement">As a Revenue Manager, I want cancellation rates broken down by market
+        segment and deposit type, so I can identify where a policy change would have real impact instead
+        of guessing.</div>
+        <div class="gherkin">
+<span class="kw">Given</span> bookings tagged by market_segment and deposit_type<br>
+<span class="kw">When</span> the cancellation rate is computed per combination<br>
+<span class="kw">Then</span> combinations above a defined threshold are flagged for review
+        </div>
+      </div>
+      <div class="us-card">
+        <div class="us-num">US-02</div>
+        <div class="us-statement">As Head of Sales for the agency channel, I want visibility into which
+        specific agents drive Non Refund cancellations, so I can target renegotiation instead of
+        changing policy for every partner.</div>
+        <div class="gherkin">
+<span class="kw">Given</span> a Non Refund booking is canceled<br>
+<span class="kw">When</span> the originating agent is identified<br>
+<span class="kw">Then</span> agents above a concentration threshold appear on a dedicated watchlist
+        </div>
+      </div>
+      <div class="us-card">
+        <div class="us-num">US-03</div>
+        <div class="us-statement">As a Finance stakeholder, I want any revenue-recovery estimate
+        presented with its volume-risk caveat attached, so a policy decision isn't made on the upside
+        number alone.</div>
+        <div class="gherkin">
+<span class="kw">Given</span> a proposed policy change with an estimated revenue recovery<br>
+<span class="kw">When</span> the business case is presented<br>
+<span class="kw">Then</span> the potential booking-volume impact is stated alongside the recovery estimate
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <h3 class="cs-h">Outcome</h3>
+      <div class="outcome-box">
+        <div class="outcome-stat">€1.93M</div>
+        <p>recoverable revenue identified (~7% of total confirmed revenue) — with the audit-first,
+        policy-second path recommended as the safer way to capture it.</p>
       </div>
     </div>
   </div>
