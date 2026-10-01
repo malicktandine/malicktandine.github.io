@@ -127,6 +127,54 @@
   .pcard .tags { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.8rem; }
   .pcard a.link { font-size: 0.82rem; font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--ink); }
 
+  /* ===== CASE STUDY ===== */
+  .cs-lede { font-size: 1rem; color: var(--muted); max-width: 64ch; margin: 0 0 1.8rem; }
+  .cs-block { margin-bottom: 2.2rem; }
+  .cs-block:last-child { margin-bottom: 0; }
+  .cs-block h3.cs-h { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 700; margin: 0 0 1rem; }
+
+  .stakeholder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+  .stakeholder-card { border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.1rem; }
+  .stakeholder-card .role { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .stakeholder-card p { font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+  .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .scope-box { border-radius: 10px; padding: 1.1rem 1.2rem; }
+  .scope-box.in { background: rgba(86,170,179,0.08); border: 1px solid rgba(86,170,179,0.3); }
+  .scope-box.out { background: rgba(215,91,86,0.06); border: 1px solid rgba(215,91,86,0.25); }
+  .scope-box h4 { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 0.6rem; }
+  .scope-box ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+  .scope-box li { margin-bottom: 0.35rem; }
+
+  .kpi-tree { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .kpi-card { border: 1px solid var(--line); border-radius: 10px; padding: 1.2rem; border-top: 3px solid var(--stat-color, var(--accent)); }
+  .kpi-card h4 { font-size: 0.95rem; margin: 0 0 0.8rem; }
+  .kpi-card ul { margin: 0; padding-left: 0; list-style: none; font-size: 0.86rem; }
+  .kpi-card li { margin-bottom: 0.5rem; padding-left: 1.3rem; position: relative; }
+  .kpi-card li::before { content: "→"; position: absolute; left: 0; color: var(--muted); }
+
+  .us-card { border: 1px solid var(--line); border-radius: 10px; padding: 1.2rem 1.3rem; margin-bottom: 1.1rem; }
+  .us-card:last-child { margin-bottom: 0; }
+  .us-card .us-num { font-size: 0.74rem; color: var(--muted); font-weight: 700; margin-bottom: 0.4rem; }
+  .us-card .us-statement { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.8rem; }
+  .gherkin {
+    background: var(--bg-soft); border-radius: 8px; padding: 0.85rem 1.05rem;
+    font-family: "Consolas", "SFMono-Regular", Menlo, monospace; font-size: 0.8rem;
+    line-height: 1.8; color: var(--ink);
+  }
+  .gherkin .kw { color: var(--accent2); font-weight: 700; }
+
+  .outcome-box {
+    background: var(--bg-soft); border-radius: 10px; padding: 1.3rem 1.4rem;
+    display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap;
+  }
+  .outcome-stat { font-size: 1.9rem; font-weight: 800; color: var(--accent3); white-space: nowrap; }
+  .outcome-box p { margin: 0; font-size: 0.9rem; }
+
+  @media (max-width: 640px) {
+    .stakeholder-grid, .scope-grid, .kpi-tree { grid-template-columns: 1fr; }
+  }
+
   /* ===== EXPERIENCE LIST ===== */
   .item { padding: 1.3rem 0; border-bottom: 1px solid var(--line); }
   .item:last-child { border-bottom: none; padding-bottom: 0; }
@@ -239,6 +287,7 @@
     <a href="#home">Home</a>
     <a href="#help">Skills</a>
     <a href="#projects">Projects</a>
+    <a href="#case-study">Case Study</a>
     <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
   </div>
@@ -335,7 +384,7 @@
         Data pipeline on Snowflake (dbt, automated tests) processing ~99,400 orders, Python model
         and Tableau dashboard.</p>
         <div class="tags">Functional scoping · dbt · Snowflake · Tableau · Python</div>
-        <a class="link" href="case-study-novaretail.html">View case study →</a>
+        <a class="link" href="#case-study">View case study →</a>
       </div>
       <div class="pcard reveal-item" style="--stat-color: var(--accent);">
         <div class="pnum">02 — SQL / BI</div>
@@ -357,6 +406,134 @@
         and CVA — built from scratch, no pricing library. Limitations documented.</p>
         <div class="tags">Python · NumPy · Monte Carlo</div>
         <a class="link" href="https://github.com/malicktandine/cva-swap-pricing" target="_blank">View code →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="case-study">
+  <div class="wrap">
+    <div class="eyebrow">Functional analysis case study</div>
+    <h2 style="font-size:1.4rem; margin:0 0 0.8rem;">NovaRetail KPI Governance — Scoping two conflicting metrics</h2>
+    <p class="cs-lede">Before writing a single dbt model, the real problem was that Marketing and Finance
+    didn't agree on what "revenue" and "loyal customer" meant. Here's the requirements work that came
+    first: stakeholder alignment, scope boundaries, and the User Stories that came out of it.</p>
+
+    <div class="cs-block">
+      <h3 class="cs-h">Context &amp; business need</h3>
+      <p style="font-size:0.92rem; margin:0;">NovaRetail is a multi-vendor marketplace. Marketing
+      couldn't explain why the loyalty rate was stagnant despite rising revenue. Digging in surfaced the
+      real issue: both teams computed revenue and loyalty differently, from tables that weren't
+      consistent with each other (duplicated customer IDs depending on the table, cancelled orders
+      included in gross revenue). The need: make both KPIs reliable enough for everyone to act on the
+      same numbers.</p>
+    </div>
+
+    <div class="cs-block">
+      <h3 class="cs-h">Stakeholders</h3>
+      <div class="stakeholder-grid reveal-stagger">
+        <div class="stakeholder-card reveal-item">
+          <div class="role">Marketing</div>
+          <p>Sponsor of the request. Owns the loyalty rate KPI and segmentation use case.</p>
+        </div>
+        <div class="stakeholder-card reveal-item">
+          <div class="role">Finance</div>
+          <p>Validates revenue figures. Needed alignment on gross vs. net-of-cancellations revenue.</p>
+        </div>
+        <div class="stakeholder-card reveal-item">
+          <div class="role">Data Engineering</div>
+          <p>Responsible for source reliability — the duplicated customer ID issue traced back here.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <h3 class="cs-h">Scope</h3>
+      <div class="scope-grid">
+        <div class="scope-box in">
+          <h4>In scope</h4>
+          <ul>
+            <li>Single definition of the loyalty KPI</li>
+            <li>Reliable revenue definition (handling cancellations)</li>
+            <li>Customer segmentation for churn risk</li>
+            <li>Dashboard refreshed monthly</li>
+          </ul>
+        </div>
+        <div class="scope-box out">
+          <h4>Explicitly out of scope</h4>
+          <ul>
+            <li>Real-time prediction</li>
+            <li>Live marketplace integration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <h3 class="cs-h">KPI governance — resolving the definitions</h3>
+      <div class="kpi-tree">
+        <div class="kpi-card" style="--stat-color: var(--accent3);">
+          <h4>Revenue (North Star metric)</h4>
+          <ul>
+            <li>Fed by <b>active customer count</b> — via <code>customer_unique_id</code>, not
+            <code>customer_id</code> (which duplicated customers)</li>
+            <li>Fed by <b>average order value</b></li>
+            <li>Sensitive to <b>order status</b> — gross (v1) vs. net of cancellations (v2)</li>
+          </ul>
+        </div>
+        <div class="kpi-card" style="--stat-color: var(--accent);">
+          <h4>Loyalty rate (supporting metric)</h4>
+          <ul>
+            <li>Depends on the <b>loyalty tier definition</b> (logged in a governance register)</li>
+            <li>Drives <b>per-customer churn risk</b></li>
+            <li>Influences <b>revenue</b> over time</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <h3 class="cs-h">From requirements to User Stories</h3>
+      <div class="us-card">
+        <div class="us-num">US-01</div>
+        <div class="us-statement">As a Marketing analyst, I want each customer counted once regardless
+        of how many order records they appear in, so that the loyalty rate isn't artificially inflated.</div>
+        <div class="gherkin">
+<span class="kw">Given</span> two orders placed under different customer_id but the same customer_unique_id<br>
+<span class="kw">When</span> the active customer count is computed<br>
+<span class="kw">Then</span> that customer is counted once, not twice
+        </div>
+      </div>
+      <div class="us-card">
+        <div class="us-num">US-02</div>
+        <div class="us-statement">As a Finance stakeholder, I want cancelled orders excluded from the
+        net revenue figure, so that revenue reporting reflects completed transactions only.</div>
+        <div class="gherkin">
+<span class="kw">Given</span> an order with status = "canceled"<br>
+<span class="kw">When</span> monthly net revenue (v2) is calculated<br>
+<span class="kw">Then</span> that order's amount is excluded from the total
+        </div>
+      </div>
+      <div class="us-card">
+        <div class="us-num">US-03</div>
+        <div class="us-statement">As a Marketing sponsor, I want a loyalty segmentation dashboard that
+        refreshes monthly, so that I can spot at-risk segments without manually reconciling two teams'
+        spreadsheets.</div>
+        <div class="gherkin">
+<span class="kw">Given</span> the monthly data pipeline run has completed<br>
+<span class="kw">When</span> the Marketing team opens the Tableau dashboard<br>
+<span class="kw">Then</span> loyalty segments and churn indicators reflect the latest closed month
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <h3 class="cs-h">Outcome</h3>
+      <div class="outcome-box">
+        <div class="outcome-stat">2.72%</div>
+        <p>revenue discrepancy identified between the gross and net-of-cancellations definitions once
+        this scope was built on Snowflake (dbt, automated tests) across ~99,400 orders — the exact gap
+        Finance and Marketing had been arguing past each other about.</p>
       </div>
     </div>
   </div>
