@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tandine Malick — Business Analyst / AMOA — Functional Analysis & Data</title>
-<meta name="description" content="Functional analysis, specs & data quality (SQL): KPI governance & scoping (dbt/Snowflake/Tableau), a €1.93M hotel revenue analysis, and CVA pricing (Monte Carlo).">
+<meta name="description" content="Functional analysis, specs & data quality (SQL): KPI governance & scoping (dbt/Snowflake, Python), a €1.93M hotel revenue analysis, and CVA pricing (Monte Carlo).">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://malicktandine.github.io/">
 <meta property="og:title" content="Tandine Malick — Business Analyst / AMOA — Functional Analysis & Data">
-<meta property="og:description" content="Functional analysis, specs & data quality (SQL): KPI governance & scoping (dbt/Snowflake/Tableau), a €1.93M hotel revenue analysis, and CVA pricing (Monte Carlo).">
+<meta property="og:description" content="Functional analysis, specs & data quality (SQL): KPI governance & scoping (dbt/Snowflake, Python), a €1.93M hotel revenue analysis, and CVA pricing (Monte Carlo).">
 <meta property="og:image" content="https://malicktandine.github.io/photo.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tandine Malick — Business Analyst / AMOA — Functional Analysis & Data">
-<meta name="twitter:description" content="Functional analysis, specs & data quality (SQL): KPI governance & scoping (dbt/Snowflake/Tableau), a €1.93M hotel revenue analysis, and CVA pricing (Monte Carlo).">
+<meta name="twitter:description" content="Functional analysis, specs & data quality (SQL): KPI governance & scoping (dbt/Snowflake, Python), a €1.93M hotel revenue analysis, and CVA pricing (Monte Carlo).">
 <meta name="twitter:image" content="https://malicktandine.github.io/photo.jpg">
 <style>
   :root {
@@ -298,8 +298,8 @@
     <img class="intro-photo" src="photo.jpg" alt="Tandine Malick">
     <div class="intro-text">
       <p class="intro-hi">Hi, I'm Malick.</p>
-      <p>I'm a <b>Business Analyst / AMOA</b>, graduate of NEOMA Business School's <b>Financial Markets and
-      Technologies</b> Master's. I gather and formalize business requirements, write functional
+      <p>I'm a <b>Business Analyst / AMOA</b>, graduate of NEOMA Business School's <b>MSc International
+      Finance</b> (Financial Markets &amp; Risk Management track). I gather and formalize business requirements, write functional
       specifications and User Stories, and control data quality and consistency (<b>SQL</b>) across
       Agile projects (Scrum/Kanban, JIRA/Confluence).</p>
       <p>2 years of international experience (<b>London</b>, <b>Johannesburg</b>) in functional
@@ -328,7 +328,7 @@
         <div class="torg">LHA London</div>
       </div>
       <div class="tstep reveal-item">
-        <div class="trole">Master FMT</div>
+        <div class="trole">MSc International Finance</div>
         <div class="tyear">2023–25</div>
         <div class="torg">NEOMA</div>
       </div>
@@ -381,9 +381,9 @@
         <div class="stat-label">revenue discrepancy identified</div>
         <p>Functional scoping and requirements gathering for 2 critical KPIs (revenue, loyalty):
         aligned Marketing and Finance on conflicting definitions, documented scope and exclusions.
-        Data pipeline on Snowflake (dbt, automated tests) processing ~99,400 orders, Python model
-        and Tableau dashboard.</p>
-        <div class="tags">Functional scoping · dbt · Snowflake · Tableau · Python</div>
+        Data pipeline on Snowflake (dbt, automated tests) processing ~99,400 orders, with a Python
+        (scikit-learn) churn-risk scoring model.</p>
+        <div class="tags">Functional scoping · dbt · Snowflake · Python</div>
         <a class="link" href="https://github.com/malicktandine/novaretail-kpi-governance" target="_blank">View code →</a>
         <a class="link" href="#case-study" style="margin-left:1rem;">View case study →</a>
       </div>
@@ -518,13 +518,13 @@
       </div>
       <div class="us-card">
         <div class="us-num">US-03</div>
-        <div class="us-statement">As a Marketing sponsor, I want a loyalty segmentation dashboard that
-        refreshes monthly, so that I can spot at-risk segments without manually reconciling two teams'
+        <div class="us-statement">As a Marketing sponsor, I want each customer's churn risk scored on a
+        monthly basis, so that I can spot at-risk segments without manually reconciling two teams'
         spreadsheets.</div>
         <div class="gherkin">
-<span class="kw">Given</span> the monthly data pipeline run has completed<br>
-<span class="kw">When</span> the Marketing team opens the Tableau dashboard<br>
-<span class="kw">Then</span> loyalty segments and churn indicators reflect the latest closed month
+<span class="kw">Given</span> the monthly dbt pipeline run has completed<br>
+<span class="kw">When</span> the churn-risk model scores the latest customer base<br>
+<span class="kw">Then</span> every customer has an up-to-date churn risk score, ready for segmentation
         </div>
       </div>
     </div>
